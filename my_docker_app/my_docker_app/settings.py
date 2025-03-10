@@ -74,18 +74,17 @@ WSGI_APPLICATION = 'my_docker_app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
 DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.{}'.format(
-             os.getenv('DATABASE_ENGINE', 'sqlite3')
-         ),
-         'NAME': os.getenv('DATABASE_NAME', 'devsrch'),
-         'USER': os.getenv('DATABASE_USERNAME', 'postgres'),
-         'PASSWORD': os.getenv('DATABASE_PASSWORD', 'Chicago23'),
-         'HOST': os.getenv('DATABASE_HOST', '192.168.16.3'),
-         'PORT': os.getenv('DATABASE_PORT', 5432),
-     }
- }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'devsrch',
+        'USER': 'postgres',
+        'PASSWORD': 'Chicago23',
+        'HOST': 'db',
+        'PORT': '5433',
+    }
+}
 
 
 # Password validation

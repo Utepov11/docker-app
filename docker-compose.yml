@@ -1,41 +1,21 @@
-version: "3.8"
+version: '3.8'
 
 services:
-  database:
-    container_name: db
-    image: postgres:13.4-alpine
-    restart: always
-    user: postgres  # importante definir o usuário
+  web:
+    build: .
+    container_name: django_app
+    command: gunicorn --bind 0.0.0.0:8000 your_project.wsgi:application
     volumes:
-      - pgdata:/var/lib/postgresql/data
-    environment:
-      - LC_ALL=C.UTF-8
-      - POSTGRES_PASSWORD=Chicago23
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=db
+      - .:/app
     ports:
-      - 5433:5432
-    networks:
-      - postgres
-
-  pgadmin:
-    container_name: pgadmin
-    image: dpage/pgadmin4
-    restart: unless-stopped
-    volumes:
-       - pgadmin:/var/lib/pgadmin
+      - "8000:8000"
+    depends_on:
+      - db
     environment:
-      PGADMIN_DEFAULT_EMAIL: frostfoll@admin.com
-      PGADMIN_DEFAULT_PASSWORD: Chicago23
-      PGADMIN_CONFIG_SERVER_MODE: 'False'
-    ports:
-      - 5050:80
-    networks:
-      - postgres
-
-volumes:
-  pgdata:
-  pgadmin:
-
+      - DEBUG=1
+      - DATABASE_URL=postgres://your_user:your_password@10.0.184.25:5433/devsrch
+    
 networks:
-  postgres:
+  default:
+    external: true
+    name: admin-dev
