@@ -1,6 +1,6 @@
 FROM python:3.11
 
-WORKDIR /app/my_docker_app
+WORKDIR /my_docker_app
 
 COPY . /app/
 
