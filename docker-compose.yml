@@ -15,8 +15,8 @@ services:
   web:
     build:
       context: ./my_docker_app  # Указываем правильный путь
-    container_name: django_app
-    command: gunicorn --bind 0.0.0.0:4000 my_docker_app.wsgi:application
+    container_name: app
+    command: gunicorn --bind 0.0.0.0:4000 app.wsgi:application
     volumes:
       - ./my_docker_app:/app
     ports:
