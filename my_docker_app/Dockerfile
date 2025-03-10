@@ -19,9 +19,8 @@ RUN useradd -m -r appuser && \
     mkdir /app && \
     chown -R appuser /app
 
-
 COPY --from=builder /usr/local/lib/python3.13/site-packages/ /usr/local/lib/python3.13/site-packages/
-COPY --from=builder /usr/loca/bin/ /usr/local/bin/
+COPY --from=builder /usr/local/bin/ /usr/local/bin/  # <-- исправленный путь
 
 WORKDIR /app
 
