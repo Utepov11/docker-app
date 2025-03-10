@@ -1,15 +1,18 @@
-# Используем Python 3.11
-FROM python:3.11
+FROM python:3.13
 
-# Указываем рабочую директорию внутри контейнера
+RUN mkdir /app
+
 WORKDIR /app
 
-# Копируем файлы проекта внутрь контейнера
-COPY . .
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1 
+
+RUN pip install --upgrade pip 
 
 # Устанавливаем зависимости
 RUN pip install --no-cache-dir -r requirements.txt
 
+COPY . /app/
 # Открываем порт
 EXPOSE 4000
 
