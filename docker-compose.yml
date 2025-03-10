@@ -1,8 +1,21 @@
 services:
+  db:
+    image: postgres:16
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_DB: devsrch
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Chicago23
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
   web:
     build: .
     container_name: django_app
-    command: gunicorn --bind 0.0.0.0:8000 your_project.wsgi:application
+    command: gunicorn --bind 0.0.0.0:8000 my_project.wsgi:application
     volumes:
       - .:/app
     ports:
@@ -11,9 +24,7 @@ services:
       - db
     environment:
       - DEBUG=1
-      - DATABASE_URL=postgres://your_user:your_password@10.0.184.25:5433/devsrch
-    
-networks:
-  default:
-    external: true
-    name: admin-dev
+      - DATABASE_URL=postgres://your_user:your_password@db:5432/devsrch
+
+volumes:
+  pgdata:
