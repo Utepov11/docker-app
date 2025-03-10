@@ -5,7 +5,7 @@ FROM python:3.11
 WORKDIR /app
 
 # Копируем файлы проекта внутрь контейнера
-COPY . /app/
+COPY . .
 
 # Устанавливаем зависимости
 RUN pip install --no-cache-dir -r requirements.txt
