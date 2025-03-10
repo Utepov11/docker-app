@@ -13,18 +13,19 @@ services:
       - pgdata:/var/lib/postgresql/data
 
   web:
-    build: .
+    build:
+      context: ./my_docker_app  # Указываем правильный путь
     container_name: django_app
     command: gunicorn --bind 0.0.0.0:8000 my_project.wsgi:application
     volumes:
-      - .:/app
+      - ./my_docker_app:/app
     ports:
       - "8000:8000"
     depends_on:
       - db
     environment:
       - DEBUG=1
-      - DATABASE_URL=postgres://your_user:your_password@db:5432/devsrch
+      - DATABASE_URL=postgres://postgres:Chicago23@db:5432/devsrch
 
 volumes:
   pgdata:
