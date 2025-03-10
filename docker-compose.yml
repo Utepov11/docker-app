@@ -20,7 +20,7 @@ services:
     volumes:
       - ./my_docker_app:/app
     ports:
-      - "8000:8000"
+      - "4000:4000"
     depends_on:
       - db
     environment:
