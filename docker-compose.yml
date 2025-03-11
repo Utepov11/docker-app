@@ -23,9 +23,8 @@ services:
       - "4000:4000"
     depends_on:
       - db
-    env_file:
-      - .env  # Подключаем .env файл для Docker
     environment:
+      - DEBUG=1
       - DATABASE_URL=postgres://postgres:Chicago23@db:5432/devsrch
 
 volumes:
