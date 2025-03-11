@@ -16,6 +16,7 @@ environ.Env.read_env(BASE_DIR / '.env')
 SECRET_KEY = env("DJANGO_SECRET_KEY")  # Используем django-environ для чтения ключа
 DEBUG = True
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1").split()
+CSRF_TRUSTED_ORIGINS = [f"http://{host}" for host in ALLOWED_HOSTS]
 
 
 
