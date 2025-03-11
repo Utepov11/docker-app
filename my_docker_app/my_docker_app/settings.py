@@ -13,9 +13,8 @@ environ.Env.read_env(BASE_DIR / '.env')
 
 # Чтение настроек из .env
 SECRET_KEY = env("DJANGO_SECRET_KEY")  # Используем django-environ для чтения ключа
-DEBUG = env("DEBUG")
+DEBUG = int(environ.get("DEBUG", default=0))
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["127.0.0.1"])
-
 
 
 # Application definition
