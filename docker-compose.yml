@@ -8,7 +8,8 @@ services:
     environment:
       POSTGRES_DB: devsrch
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: Chicago23
+      POSTGRES_PASSWORD: Chicago2
+      POSTGRES_HOST: db
     ports:
       - "5433:5432"
     volumes:
