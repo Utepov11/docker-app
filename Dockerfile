@@ -17,4 +17,4 @@ COPY . /app/
 EXPOSE 4000
 
 # Запускаем Gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:4000", "my_docker_app.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:4000", "--workers", "3", "--threads", "2", "--timeout", "120", "my_docker_app.wsgi:application"]
